@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+//Route::get('comments/{id}', 'ApiController@getComments');
+//Route::post('comments/{id}', 'ApiController@postComments');
+
+//Route::post('favorite/{video_id}', 'ApiController@postFavorite');
+
+//Route::post('rate/{video_id}', 'ApiController@postRate');
+
+
