@@ -1,0 +1,1 @@
+{"version":3,"sources":["dashboard.js"],"names":[],"mappings":"AAAA;AACA;AACA","file":"dashboard.js","sourcesContent":["require('jquery');\r\nrequire('bootstrap-sass');\r\nrequire ('gentelella');"]}

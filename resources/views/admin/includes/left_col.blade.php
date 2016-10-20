@@ -23,77 +23,42 @@
                             <i class="fa fa-home"></i> Home
                             <span class="fa fa-chevron-down"></span>
                         </a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                        </ul>
                     </li>
                     <li class="{{ str_contains(\Request::route()->getName(), 'users') ? 'active' : '' }}">
                         <a href="{{ route('admin.users.index')  }}">
                             <i class="fa fa-users"></i> Users
                             <span class="fa fa-chevron-down"></span>
                         </a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                        </ul>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li class="{{ str_contains(\Request::route()->getName(), 'videos') ? 'active' : '' }}">
+                        <a href="{{ route('admin.videos.index') }}">
                             <i class="fa fa-video-camera"></i> Videos
                             <span class="fa fa-chevron-down"></span>
                         </a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#">
                             <i class="fa fa-envelope-o"></i> Messages
                             <span class="fa fa-chevron-down"></span>
                         </a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#">
                             <i class="fa fa-clone"></i> Pages
                             <span class="fa fa-chevron-down"></span>
                         </a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#">
                             <i class="fa fa-ticket"></i> Banners
                             <span class="fa fa-chevron-down"></span>
                         </a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="fa fa-home"></i> Settings
+                            <i class="fa fa-gears"></i> Settings
                             <span class="fa fa-chevron-down"></span>
                         </a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>

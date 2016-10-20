@@ -34,6 +34,8 @@ Route::group(['prefix' => '/', 'namespace' => 'Front'], function() {
     Route::get('contact', 'FrontController@getContact');
     Route::post('contact', 'FrontController@postContact');
     Route::get('terms-and-conditions', 'FrontController@getTermsAndConditions');
+
+    Route::get('test', 'FrontController@test');
 });
 
 
@@ -50,7 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
     Route::get('/', ['as' => 'index', 'uses' => 'AdminController@index']);
     Route::resources([
         'users' => 'UsersController',
-       // 'videos' => 'VideosController',
+        'videos' => 'VideosController',
        // 'messages' => 'MessagesController',
        // 'pages' => 'PagesController',
        // 'banners' => 'BannersController',
