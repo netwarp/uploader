@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="/css/app.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         @yield('styles')
-        <title>Document</title>
+        <title>@yield('title')</title>
     </head>
     <body class="nav-md">
         <div class="container body" id="app">
