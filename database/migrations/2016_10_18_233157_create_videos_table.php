@@ -15,6 +15,7 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('public_id')->nullable();
             $table->string('title');
             $table->string('slug');
             $table->string('poster')->nullable();

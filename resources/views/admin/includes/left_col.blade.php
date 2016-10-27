@@ -18,31 +18,35 @@
             <div class="menu_section active">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    <li class="{{ \Request::route()->getName() == 'admin.index' ? 'active' : '' }}">
+                    <li class="{{ $menu_active == 'home' ? 'active' : '' }}">
                         <a href="{{ route('admin.index')  }}">
                             <i class="fa fa-home"></i> Home
                             <span class="fa fa-chevron-down"></span>
                         </a>
                     </li>
-                    <li class="{{ str_contains(\Request::route()->getName(), 'users') ? 'active' : '' }}">
+                    <li class="{{ $menu_active == 'users' ? 'active' : '' }}">
                         <a href="{{ route('admin.users.index')  }}">
                             <i class="fa fa-users"></i> Users
                             <span class="fa fa-chevron-down"></span>
                         </a>
                     </li>
-                    <li class="{{ str_contains(\Request::route()->getName(), 'videos') ? 'active' : '' }}">
-                        <a href="{{ route('admin.videos.index') }}">
+                    <li class="{{ $menu_active == 'videos' ? 'active' : '' }}">
+                        <a href="#">
                             <i class="fa fa-video-camera"></i> Videos
                             <span class="fa fa-chevron-down"></span>
                         </a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('admin.videos.index') }}">Online</a></li>
+                            <li><a href="{{ route('admin.validations.index') }}">Wait for validation</a></li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li class="{{ $menu_active == 'messages' ? 'active' : '' }}">
+                        <a href="{{ route('admin.messages.index') }}">
                             <i class="fa fa-envelope-o"></i> Messages
                             <span class="fa fa-chevron-down"></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ $menu_active == 'pages' ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa-clone"></i> Pages
                             <span class="fa fa-chevron-down"></span>

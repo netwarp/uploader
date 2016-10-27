@@ -19,7 +19,10 @@ class UsersController extends Controller
     {
         $users = User::paginate(20);
 
-        return view('admin.pages.users.index', compact('users'));
+        return view('admin.pages.users.index', [
+            'users' => $users,
+            'menu_active' => 'users'
+        ]);
     }
 
     /**
@@ -29,7 +32,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.users.create');
+        return view('admin.pages.users.create', [
+            'menu_active' => 'users'
+        ]);
     }
 
     /**
@@ -65,7 +70,10 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('admin.pages.users.show', compact('user'));
+        return view('admin.pages.users.show', [
+            'user' => $user,
+            'menu_active' => 'users'
+        ]);
     }
 
     /**
@@ -78,7 +86,10 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('admin.pages.users.edit', compact('user'));
+        return view('admin.pages.users.edit', [
+            'user' => $user,
+            'menu_active' => 'users'
+        ]);
     }
 
     /**

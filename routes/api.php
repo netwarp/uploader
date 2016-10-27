@@ -17,6 +17,10 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
+
+Route::get('video/{id}/{string}', ['as' => 'video.watch', 'uses' => 'Api\ApiController@watch']);
+
+
 //Route::get('comments/{id}', 'ApiController@getComments');
 //Route::post('comments/{id}', 'ApiController@postComments');
 

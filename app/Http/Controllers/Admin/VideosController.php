@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Video;
-use Log;
+use Linkthrow\Ffmpeg\Classes\FFMPEG;
 Use Validator;
 use Auth;
 use Storage;
+use App\User;
+use Log;
 
 class VideosController extends Controller
 {
@@ -21,9 +22,12 @@ class VideosController extends Controller
      */
     public function index()
     {
-        $videos = Video::paginate(20);
+        $videos = Video::where('validated', true)->paginate(20);
 
-        return view('admin.pages.videos.index', compact('videos'));
+        return view('admin.pages.videos.index', [
+            'videos' => $videos,
+            'menu_active' => 'videos'
+        ]);
     }
 
     /**
@@ -33,7 +37,9 @@ class VideosController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.videos.create');
+        return view('admin.pages.videos.create', [
+            'menu_active' => 'videos'
+        ]);
     }
 
     /**
@@ -62,15 +68,34 @@ class VideosController extends Controller
             $video->title = substr($file->getClientOriginalName(), 0, -4);
             $video->slug = str_slug($video->title);
             $video->user_id = Auth::user()->id;
-            $video->path = 'a';
+            $video->path = '';
             $video->save();
 
             $destination = "/videos/$video->id";
 
-            // in params: path, content, name
-            Storage::putFileAs($destination, $file, 'toto.mp4');
+            $extension = $file->getClientOriginalExtension();
+            $random_string = str_random(10);
+            $filename = "$random_string.$extension";
 
-            echo 'perfect upload';
+            $video->public_id = $random_string;
+
+            // in params: path, content, name
+            Storage::putFileAs($destination, $file, $filename);
+
+            $video->path = "/videos/$video->id/$random_string";
+
+            $file_path = storage_path("app/videos/$video->id");
+            chdir($file_path);
+
+            $video->duration = FFMPEG::getMediaInfo($filename)['format']['duration'];
+            $video->save();
+
+            if ($extension != 'webm') {
+                $command = "ffmpeg -i $filename $random_string.webm > /dev/null &";
+                exec($command);
+            }
+
+            return redirect()->route('admin.videos.index')->with('success', 'Video uploaded');
         }
     }
 
@@ -82,7 +107,12 @@ class VideosController extends Controller
      */
     public function show($id)
     {
-        //
+        $video = Video::findOrFail($id);
+
+        return view('admin.pages.videos.show', [
+            'video' => $video,
+            'menu_active' => 'videos'
+        ]);
     }
 
     /**
@@ -93,7 +123,12 @@ class VideosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video = Video::findOrFail($id);
+
+        return view('admin.pages.videos.edit', [
+            'video' => $video,
+            'menu_active' => 'videos'
+        ]);
     }
 
     /**
@@ -117,8 +152,8 @@ class VideosController extends Controller
     public function destroy($id)
     {
         $video = Video::findOrFail($id);
-
         $video->delete();
+        Storage::deleteDirectory("videos/$id");
 
         return redirect()->back()->with('success', 'Video Deleted');
     }

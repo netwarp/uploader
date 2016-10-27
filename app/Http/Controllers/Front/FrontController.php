@@ -10,6 +10,7 @@ use DB;
 use App\User;
 use File;
 use Response;
+use FFMPEG;
 
 class FrontController extends Controller
 {
@@ -19,7 +20,8 @@ class FrontController extends Controller
     }
 
     public function test() {
-        $path = storage_path('app/Amphix.mp4');
+        /*
+        $path = storage_path('app/toto.mp4');
 
         if(!File::exists($path)) {
             echo 'no';
@@ -29,5 +31,13 @@ class FrontController extends Controller
         $response = Response::make($file, 200);
         $response->header("Content-Type", $type);
         return $response;
+        */
+        /*
+        $path = storage_path('app');
+        chdir($path);
+        FFMPEG::convert()->input('toto.mp4')->bitrate(128)->output('test3.avi')->go();
+        echo 'az';
+        */
+        echo "string";
     }
 }

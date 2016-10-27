@@ -35,7 +35,11 @@
                         @foreach($videos as $video)
                             <tr>
                                 <td>{{ $video->id  }}</td>
-                                <td><a href="{{ route('admin.videos.show', $video->id) }}">{{ $video->title  }}</a></td>
+                                @if (\Request::route()->getName() == 'admin.videos.index')
+                                    <td><a href="{{ route('admin.videos.show', $video->id) }}">{{ $video->title  }}</a></td>
+                                @elseif(\Request::route()->getName() == 'admin.validations.index')
+                                    <td><a href="{{ route('admin.validations.edit', $video->id) }}">{{ $video->title  }}</a></td>
+                                @endif
                                 <td>{{ $video->user_id }}</td>
                                 <td>12</td>
                                 <td>{{ $video->created_at }}</td>

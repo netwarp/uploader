@@ -10,7 +10,8 @@ class Video extends Model
     protected $table = 'videos';
 
     public function user() {
-        return $this->belongsTo('User');
+
+        return $this->belongsTo('App\User');
     }
 
     public function comments() {

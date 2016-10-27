@@ -178,6 +178,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        'LinkThrow\Ffmpeg\Provider\FfmpegServiceProvider',
+        Barryvdh\Debugbar\ServiceProvider::class,
+        \Conner\Tagging\Providers\TaggingServiceProvider::class,
     ],
 
     /*
@@ -226,6 +229,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'FFMPEG'           => 'LinkThrow\Ffmpeg\Facade\FfmpegFacade',
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
