@@ -54,7 +54,12 @@ class MessagesController extends Controller
      */
     public function show($id)
     {
-        //
+        $message = Message::findOrFail($id);
+
+        return view('admin.pages.messages.show', [
+            'message' => $message,
+            'menu_active' => 'messages'
+        ]);
     }
 
     /**
@@ -88,6 +93,9 @@ class MessagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $message = Message::findOrFail($id);
+        $message->delete();
+
+        return redirect()->back()->with('success', 'message deleted');
     }
 }

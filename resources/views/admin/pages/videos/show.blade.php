@@ -16,7 +16,7 @@
                     <h3>{{ $video->title }}</h3>
                     <div class="embed-responsive embed-responsive-16by9">
                     <video controls>
-                        <source src="{{ "/api/video/$video->id/GV5dHnPJyv" }}">
+                        <source src="{{ "/api/video/$video->id/$video->public_id" }}">
                         Your browser does not support the video tag, please use firefox or chrome
                     </video>
                         </div>

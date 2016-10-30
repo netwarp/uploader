@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,7 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UsersTableSeeder::class);
+        //$this->call(UsersTableSeeder::class);
+        //$this->call(MessagesTableSeeder::class);
     }
 }
 
@@ -29,5 +31,25 @@ class UsersTableSeeder extends Seeder
             'avatar' => 'toto',
             'ip' => '01'
         ]);
+    }
+}
+
+class MessagesTableSeeder extends Seeder 
+{
+    public function run()
+    {
+
+        $faker = Faker\Factory::create();
+        $limit = 33;
+
+         for ($i = 0; $i < $limit; $i++) {
+            DB::table('messages')->insert([
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'subject' => $faker->title,
+                'text' => $faker->realText($faker->numberBetween(10,20)),
+                'ip' => $faker->ipv4
+            ]);
+        }
     }
 }
