@@ -87,10 +87,13 @@ class ValidationsController extends Controller
         ]);
         $video = Video::findOrFail($id);
 
-
         $validation = $request->get('validation');
 
         if ($validation == 'true') {
+            $tags = $request->get('tags');
+            $tags = explode(' ', $tags);
+
+            $video->tag($tags);
             $video->validated = true;
             $video->save();
             return redirect()->route('admin.validations.index')->with('success', 'The video has been validated');

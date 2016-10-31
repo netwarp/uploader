@@ -5,30 +5,56 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/css/front/index.css">
         <title>Uploader</title>
     </head>
     <body>
         <div class="container-fluid">
-        <header>
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="/">
-                        <img src="http://placehold.it/50x50" alt="logo" id="logo">
-                    </a>
+            <header>
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="/">
+                            <img src="/img/logo.png" alt="logo" id="logo" width="60">
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col-md-5">
+                        <a href="#" class="btn btn-info pull-right">aa</a>
+                        <a href="#" class="btn btn-primary pull-right">aa</a>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control">
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">Menu</a></li>
+                </ul>
+            </nav>
+            <section>
+                <div class="row">
+                    <div class="col-md-2 sidebar">
+                        <ul>
+                            @for($i = 0; $i < 20; $i++)
+                                <li><a href="#">tag</a></li>
+                            @endfor
+                        </ul>
+                    </div>
+                    <main class="col-md-10" >
+                        @yield('content')
+                    </main>
                 </div>
-                <div class="col-md-5">
-                    <a href="#" class="btn btn-info">aa</a>
-                    <a href="#" class="btn btn-primary">aa</a>
+            </section>
+            <footer>
+                <div class="row">
+                    <div class="col-md-12">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas ex, unde magni soluta voluptate vitae officiis quia, sit animi alias neque, quasi aut laborum, rem quibusdam sequi explicabo autem inventore?
+                    </div>
                 </div>
-            </div>
-        </header>
-        <section>
-            @yield('content')
-        </section>
+            </footer>
         </div>
     </body>
 </html>

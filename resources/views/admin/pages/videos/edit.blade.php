@@ -36,9 +36,16 @@
                 </div>
                 <div class="x_content">
                     <form action="{{ route('admin.videos.update', $video->id) }}" method="POST">
-                        <textarea name="tags" class="form-control">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="PUT">
 
-                        </textarea>
+                        <div class="form-group">
+                            <label for="tags">Tags</label>
+                            <textarea name="tags" class="form-control" id="tags" rows="2">@foreach($video->tags as $tag){{ $tag->name or '' }} @endforeach</textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Go</button>
+                        </div>
                     </form>
                 </div>
             </div>

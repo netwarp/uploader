@@ -11,12 +11,17 @@ use App\User;
 use File;
 use Response;
 use FFMPEG;
+use App\Models\Video;
 
 class FrontController extends Controller
 {
     public function getIndex() {
 
-        return view('front.pages.index');
+        $videos = Video::where('validated', true)->get();
+
+        return view('front.pages.index', [
+            'videos' => $videos
+        ]);
     }
 
     public function test() {

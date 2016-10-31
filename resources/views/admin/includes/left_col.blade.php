@@ -40,6 +40,15 @@
                             <li><a href="{{ route('admin.validations.index') }}">Wait for validation</a></li>
                         </ul>
                     </li>
+                    <li class="{{ $menu_active == 'tags' ? 'active' : '' }}">
+                        <a href="#">
+                            <i class="fa fa fa-tags"></i> Tags
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('admin.tags.index') }}">All Tags</a></li>
+                        </ul>
+                    </li>
                     <li class="{{ $menu_active == 'messages' ? 'active' : '' }}">
                         <a href="{{ route('admin.messages.index') }}">
                             <i class="fa fa-envelope-o"></i> Messages

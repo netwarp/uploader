@@ -54,6 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
         'users' => 'UsersController',
         'videos' => 'VideosController',
         'validations' => 'ValidationsController',
+        'tags' => 'TagsController',
         'messages' => 'MessagesController',
        // 'pages' => 'PagesController',
        // 'banners' => 'BannersController',

@@ -140,7 +140,14 @@ class VideosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $video = Video::findOrFail($id);
+
+        $tags = $request->get('tags');
+        $tags = explode(' ', $tags);
+        
+        $video->tag($tags);
+
+        return redirect()->route('admin.videos.index')->with('success', 'Video updated');
     }
 
     /**

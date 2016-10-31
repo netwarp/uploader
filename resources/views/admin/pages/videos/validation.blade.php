@@ -41,6 +41,10 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="tags">Tags</label>
+                            <textarea name="tags" class="form-control" id="tags" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
                             <button type="submit" class="btn btn-primary">Validate</button>
                         </div>
                     </form>

@@ -7,6 +7,7 @@ use App\User;
 
 class Video extends Model
 {
+	use \Conner\Tagging\Taggable;
     protected $table = 'videos';
 
     public function user() {
