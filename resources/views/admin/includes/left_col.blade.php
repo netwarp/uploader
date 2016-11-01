@@ -61,6 +61,12 @@
                             <span class="fa fa-chevron-down"></span>
                         </a>
                     </li>
+                    <li class="{{ $menu_active == 'menu' ? 'active' : '' }}">
+                        <a href="{{ route('admin.menu.index') }}">
+                            <i class="fa fa-clone"></i> Menu
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                    </li>
                     <li>
                         <a href="#">
                             <i class="fa fa-ticket"></i> Banners

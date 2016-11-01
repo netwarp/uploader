@@ -12,15 +12,15 @@
         <div class="container-fluid">
             <header>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <a href="/">
-                            <img src="/img/logo.png" alt="logo" id="logo" width="60">
+                            <img src="/img/logo.png" alt="logo" id="logo">
                         </a>
                     </div>
                     <div class="col-md-4">
                         <input type="text" class="form-control">
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 btn-line">
                         <a href="#" class="btn btn-info pull-right">aa</a>
                         <a href="#" class="btn btn-primary pull-right">aa</a>
                     </div>
