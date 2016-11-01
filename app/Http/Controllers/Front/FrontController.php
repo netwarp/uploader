@@ -24,6 +24,14 @@ class FrontController extends Controller
         ]);
     }
 
+    public function getTag($tag) {
+        $videos = Video::withAnyTag($tag)->get();
+
+        return view('front.pages.cards', [
+            'videos' => $videos
+        ]);
+    }
+
     public function test() {
         /*
         $path = storage_path('app/toto.mp4');

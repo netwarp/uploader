@@ -1,12 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="/css/front/index.css">
-        <title>Uploader</title>
+        @include('front.includes.head')
     </head>
     <body>
         <div class="container-fluid">
@@ -21,8 +16,8 @@
                         <input type="text" class="form-control">
                     </div>
                     <div class="col-md-5 btn-line">
-                        <a href="#" class="btn btn-info pull-right">aa</a>
-                        <a href="#" class="btn btn-primary pull-right">aa</a>
+                        <a href="#" class="btn btn-info pull-right">Login</a>
+                        <a href="#" class="btn btn-primary pull-right">Register</a>
                     </div>
                 </div>
             </header>
@@ -37,11 +32,7 @@
             <section>
                 <div class="row">
                     <div class="col-md-2 sidebar">
-                        <ul>
-                            @for($i = 0; $i < 20; $i++)
-                                <li><a href="#">tag</a></li>
-                            @endfor
-                        </ul>
+                        @include('front.includes.sidebar')
                     </div>
                     <main class="col-md-10" >
                         @yield('content')
