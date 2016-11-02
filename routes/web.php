@@ -33,7 +33,7 @@ Route::group(['prefix' => '/', 'namespace' => 'Front'], function() {
 
     Route::get('contact', 'FrontController@getContact');
     Route::post('contact', 'FrontController@postContact');
-    Route::get('terms-and-conditions', 'FrontController@getTermsAndConditions');
+    Route::get('conditions', 'FrontController@getConditions');
 
     Route::get('test', ['as' => 'test', 'uses' => 'FrontController@test']);
 });

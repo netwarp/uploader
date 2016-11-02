@@ -13,8 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
-        $this->call(MessagesTableSeeder::class);
+        //$this->call(UsersTableSeeder::class);
+        //$this->call(MessagesTableSeeder::class);
+        $this->call(PagesTableSeeder::class);
     }
 }
 
@@ -51,5 +52,16 @@ class MessagesTableSeeder extends Seeder
                 'ip' => $faker->ipv4
             ]);
         }
+    }
+}
+
+class PagesTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('pages')->insert([
+           'name' => 'conditions',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, similique facere. Rem aliquam consequuntur quasi aspernatur laboriosam nulla, similique minus labore, odit ut aperiam, omnis incidunt quaerat sint adipisci. Soluta.'
+        ]);
     }
 }

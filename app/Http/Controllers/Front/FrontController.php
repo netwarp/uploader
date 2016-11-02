@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Video;
 use Mail;
 use App\Mail\Contacted;
+use App\Models\Page;
 
 class FrontController extends Controller
 {
@@ -44,6 +45,15 @@ class FrontController extends Controller
         Mail::to('foo@bar.com')->send(new Contacted);
 
         return redirect()->back()->with('success', 'Your email is sent');
+    }
+
+    public function getConditions() {
+
+        $page = Page::where('name', 'conditions')->first();
+
+        return view('front.pages.conditions', [
+            'page' => $page
+        ]);
     }
 
     public function test() {
