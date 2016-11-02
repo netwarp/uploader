@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('status', ['user', 'admin'])->default('user');
-            $table->text('description');
-            $table->string('avatar');
+            $table->text('description')->nullable();
+            $table->string('avatar')->nullable();
             $table->boolean('banned')->default(false);
-            $table->string('ip');
+            $table->string('ip')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -181,6 +181,8 @@ return [
         'LinkThrow\Ffmpeg\Provider\FfmpegServiceProvider',
         Barryvdh\Debugbar\ServiceProvider::class,
         \Conner\Tagging\Providers\TaggingServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
+
     ],
 
     /*
@@ -231,6 +233,8 @@ return [
 
         'FFMPEG'           => 'LinkThrow\Ffmpeg\Facade\FfmpegFacade',
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class
+
     ],
 
 ];

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Video;
+use Storage;
+use File;
+use Image;
 
 class ValidationsController extends Controller
 {
@@ -97,6 +100,33 @@ class ValidationsController extends Controller
             $video->validated = true;
             $video->save();
             return redirect()->route('admin.validations.index')->with('success', 'The video has been validated');
+        }
+
+        $nb_thumbnails = 12;
+
+        $path = storage_path("app/videos/$id");
+        chdir($path);
+
+        $file = File::files($path)[0];
+        $name = File::name($file);
+        $complete_name = basename($file);
+
+        $total_seconds = shell_exec("ffprobe -i $file -show_format -v quiet | sed -n 's/duration=//p'");
+        $total_seconds = floor($total_seconds);
+
+        $fps = $total_seconds / $nb_thumbnails;
+        $fps = floor($fps);
+
+        $command = "ffmpeg -i $complete_name -vf fps=1/$fps thumb-$name-%d.jpg";
+        exec($command);
+
+        $images = File::files($path);
+        $images = array_slice($images, 2);
+
+        foreach ($images as $image) {
+            $img = Image::make($image);
+            $img->resize(220, 170);
+            $img->save($image);
         }
 
         return redirect()->back();

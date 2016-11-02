@@ -10,7 +10,8 @@
         "predis/predis": "^1.1",
         "linkthrow/ffmpeg": "dev-master",
         "barryvdh/laravel-debugbar": "^2.3",
-        "rtconner/laravel-tagging": "~2.2"
+        "rtconner/laravel-tagging": "~2.2",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

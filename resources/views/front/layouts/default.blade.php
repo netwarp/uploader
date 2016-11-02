@@ -23,10 +23,14 @@
             </header>
             <nav>
                 <ul>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Most Viewed</a></li>
+                    <li><a href="#">Top Rated</a></li>
+                    <li><a href="#">Most Favorited</a></li>
+                    <li><a href="#">Most Commented</a></li>
+                    <li><a href="#">Random</a></li>
+                    <li><a href="#">Stars</a></li>
+                    <li><a href="#">Channels</a></li>
                 </ul>
             </nav>
             <section>
