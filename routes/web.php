@@ -56,8 +56,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
         'validations' => 'ValidationsController',
         'tags' => 'TagsController',
         'messages' => 'MessagesController',
-        'menu' => 'MenuController'
-       // 'pages' => 'PagesController',
+        'menu' => 'MenuController',
+        'pages' => 'PagesController',
        // 'banners' => 'BannersController',
        // 'settings' => 'SettingsController'
     ]);

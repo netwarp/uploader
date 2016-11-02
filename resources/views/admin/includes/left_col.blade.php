@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li class="{{ $menu_active == 'pages' ? 'active' : '' }}">
-                        <a href="#">
+                        <a href="{{ route('admin.pages.index') }}">
                             <i class="fa fa-clone"></i> Pages
                             <span class="fa fa-chevron-down"></span>
                         </a>
