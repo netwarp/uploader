@@ -6,12 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use DB;
-use App\User;
-use File;
-use Response;
-use FFMPEG;
 use App\Models\Video;
+use Mail;
+use App\Mail\Contacted;
 
 class FrontController extends Controller
 {
@@ -30,6 +27,23 @@ class FrontController extends Controller
         return view('front.pages.cards', [
             'videos' => $videos
         ]);
+    }
+
+    public function getContact() {
+        return view('front.pages.contact');
+    }
+
+    public function postContact(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'subject' => 'required',
+            'email' => 'required|email',
+            'message' => 'required'
+        ]);
+
+        Mail::to('foo@bar.com')->send(new Contacted);
+
+        return redirect()->back()->with('success', 'Your email is sent');
     }
 
     public function test() {
