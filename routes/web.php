@@ -14,7 +14,7 @@
 Route::group(['prefix' => '/', 'namespace' => 'Front'], function() {
     Route::get('/', 'FrontController@getIndex');
 
-    Route::get('video/{id}/{slug}', 'FrontController@getVideo');
+    Route::get('watch/{id}/{slug}', 'FrontController@getWatch');
 
     Route::get('search', 'FrontController@getSearch');
 

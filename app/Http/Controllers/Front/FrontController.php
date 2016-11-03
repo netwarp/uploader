@@ -10,15 +10,30 @@ use App\Models\Video;
 use Mail;
 use App\Mail\Contacted;
 use App\Models\Page;
+use Cache;
 
 class FrontController extends Controller
 {
     public function getIndex() {
-
-        $videos = Video::where('validated', true)->get();
+        
+        $videos = Cache::remember('index', 20, function() {
+            return Video::where('validated', true)->get();
+        });
+        
+        //$videos = Video::where('validated', true)->get();
 
         return view('front.pages.index', [
             'videos' => $videos
+        ]);
+        
+
+    }
+
+    public function getWatch($id, $slug) {
+        $video = Video::findOrFail($id);
+
+        return view('front.pages.watch', [
+            'video' => $video
         ]);
     }
 

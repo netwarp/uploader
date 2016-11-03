@@ -28,6 +28,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Banned</th>
+                            <th>Active</th>
                             <th>Date register</th>
                             <th>Action</th>
                         </tr>
@@ -39,7 +40,8 @@
                                 <td><a href="{{ route('admin.users.show', $user->id) }}">{{ $user->name  }}</a></td>
                                 <td>{{ $user->email  }}</td>
                                 <td>{{ $user->banned or 'false'  }}</td>
-                                <td>{{ $user->created_at  }}</td>
+                                <td>{{ empty($user->confirmation_token)  }}</td>
+                                <td>{{ isset($user->created_at) ? $user->created_at->format('d M Y') : '' }}</td>
                                 <td>
                                     <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn btn-dark btn-sm"><i class="fa fa-pencil"></i> Edit</a>
                                     <form action="{{ route('admin.users.destroy', $user->id) }}" style="display: inline;" method="POST">

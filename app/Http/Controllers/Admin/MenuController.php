@@ -20,7 +20,9 @@ class MenuController extends Controller
     {
         $items = Redis::get('menu');
         $items = json_decode($items);
-        sort($items);
+        if (!empty($items)) {
+            sort($items);
+        }
 
         return view('admin.pages.menu.index', [
             'items' => $items,
