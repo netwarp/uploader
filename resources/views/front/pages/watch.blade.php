@@ -4,7 +4,9 @@
 <div class="container" style="margin-top:100px">
 	<div class="row">
 		<div class="col-md-2">
+
 			@include('front.includes.sidebar')
+
 		</div>
 		<div class="col-md-7">
 			<div class="well">
@@ -42,28 +44,27 @@
 
 			<div class="well">
 				<h3 class="h5">Comments</h3>
-				<form action="#">
-					<div class="form-group">
-						<textarea rows="4" class="form-control"></textarea>	
-					</div>
-					<div class="form-group">
-						<button type="button" class="btn btn-default">Send</button>
-					</div>
+				<form @submit="postComment" method="POST">
+				<div class="form-group">
+					<textarea rows="4" class="form-control"></textarea>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-default">Send</button>
+				</div>
 				</form>
 				<hr>
 				<ul class="list-group">
-					@for($i = 0; $i < 10; $i++)
-						<li class="list-group-item">
-							<div>
-								toto <span class="small">01 12 12</span>
-							</div>
-							<div>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero natus corrupti dicta quia excepturi aliquam accusantium commodi recusandae, consequuntur. Consequuntur, nulla. Illum quos expedita illo saepe dicta minus magni unde!
-							</div>
-						</li>
-					@endfor
+					@foreach($video->comments()->get() as $comment)
+					<li class="list-group-item">
+						<div>
+							<p>{{ $comment->user }} <span class="small">{{ $comment->created_at }}</span></p>
+							<p>{{ $comment->content }}</p>
+						</div>
+					</li>
+					@endforeach
 				</ul>
 			</div>
+
 		</div>
 		<div class="col-md-3">
 			<div class="well">

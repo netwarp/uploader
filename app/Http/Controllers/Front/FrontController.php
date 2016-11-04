@@ -90,6 +90,6 @@ class FrontController extends Controller
         FFMPEG::convert()->input('toto.mp4')->bitrate(128)->output('test3.avi')->go();
         echo 'az';
         */
-        echo "string";
+        return "string";
     }
 }

@@ -19,10 +19,25 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+    <style>
+        .navbar-header {
+            background: #222;
+        }
+
+        #logo {
+            position: relative;
+            bottom: 8px;
+        }
+
+        .nav.navbar-nav>li>a {
+            color: #f5f5f5 !important;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -36,15 +51,24 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src="/img/logo.png" alt="logo" width="50" id="logo">
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="#">&nbsp;</a></li>
+                        <li><a href="#">&nbsp;</a></li>
+                        <li><a href="/news">News</a></li>
+                        <li><a href="/most-viewed">Most Viewed</a></li>
+                        <li><a href="/top-rated">Top Rated</a></li>
+                        <li><a href="/most-commented">Most Commented</a></li>
+                        <li><a href="/random">Random</a></li>
+                        <li><a href="/stars">Stars</a></li>
+                        <li><a href="/channels">Channels</a></li>
                     </ul>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -74,6 +98,7 @@
                             </li>
                         @endif
                     </ul>
+                    
                 </div>
             </div>
         </nav>

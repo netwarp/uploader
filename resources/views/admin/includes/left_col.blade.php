@@ -73,8 +73,8 @@
                             <span class="fa fa-chevron-down"></span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li class="{{ $menu_active == 'settings' ? 'active' : '' }}">
+                        <a href="{{ route('admin.settings.index') }}">
                             <i class="fa fa-gears"></i> Settings
                             <span class="fa fa-chevron-down"></span>
                         </a>

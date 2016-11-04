@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use File;
 use Response;
+use App\Models\Video;
 
 
 class ApiController extends Controller
@@ -23,5 +24,13 @@ class ApiController extends Controller
         $response = Response::make($file, 200);
         $response->header("Content-Type", $type);
         return $response;
+    }
+
+    public function getComments($id) {
+        $video = Video::findOrFail($id);
+
+        $comments = $video->getComments()->get();
+
+        return $comments;
     }
 }
