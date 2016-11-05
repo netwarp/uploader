@@ -4,9 +4,7 @@
 <div class="container" style="margin-top:100px">
 	<div class="row">
 		<div class="col-md-2">
-
 			@include('front.includes.sidebar')
-
 		</div>
 		<div class="col-md-7">
 			<div class="well">
@@ -17,8 +15,8 @@
 				</div>	
 				<h1 class="h4">{{ $video->title }}</h1>
 				<p>{{ $video->nb_views }}</p>
-				
-				<button type="button" class="btn btn-primary btn-sm">Favorite</button>
+				{{-- <button type="button" class="btn btn-primary btn-sm">Favorite</button> --}}
+				<favorite></favorite>
 				<button type="button" class="btn btn-dark btn-sm">Download</button>
 				<button type="button" class="btn btn-info btn-sm">Rate</button>
 
@@ -42,15 +40,16 @@
 				</div>
 			</div>
 
+			{{--
 			<div class="well">
 				<h3 class="h5">Comments</h3>
 				<form @submit="postComment" method="POST">
-				<div class="form-group">
-					<textarea rows="4" class="form-control"></textarea>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-default">Send</button>
-				</div>
+					<div class="form-group">
+						<textarea rows="4" class="form-control"></textarea>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-default">Send</button>
+					</div>
 				</form>
 				<hr>
 				<ul class="list-group">
@@ -64,6 +63,8 @@
 					@endforeach
 				</ul>
 			</div>
+			--}}
+			<comments></comments>
 
 		</div>
 		<div class="col-md-3">

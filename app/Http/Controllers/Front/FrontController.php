@@ -11,6 +11,8 @@ use Mail;
 use App\Mail\Contacted;
 use App\Models\Page;
 use Cache;
+use Auth;
+use App\Models\Comment;
 
 class FrontController extends Controller
 {
@@ -40,7 +42,7 @@ class FrontController extends Controller
     public function getTag($tag) {
         $videos = Video::withAnyTag($tag)->get();
 
-        return view('front.pages.cards', [
+        return view('front.pages.index', [
             'videos' => $videos
         ]);
     }
@@ -90,6 +92,18 @@ class FrontController extends Controller
         FFMPEG::convert()->input('toto.mp4')->bitrate(128)->output('test3.avi')->go();
         echo 'az';
         */
-        return "string";
+
+        /*
+        $video = Video::findOrFail(1);
+
+        $comments = $video->comments()->get();
+        dd($comments);
+        */
+
+        Comment::create([
+            'user_name' => 'bob',
+            'video_id' => 1,
+            'content' => 'commentaire 1'
+        ]);
     }
 }

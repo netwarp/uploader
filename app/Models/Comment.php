@@ -8,6 +8,12 @@ class Comment extends Model
 {
     protected $table = 'comments';
 
+    protected $fillable = [
+    	'user_name',
+    	'video_id',
+    	'content'
+    ];
+
     public function user() {
         return $this->belongsTo('App\User');
     }

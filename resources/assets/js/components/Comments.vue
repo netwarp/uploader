@@ -1,9 +1,9 @@
 <template>
     <div class="well">
         <h3 class="h5">Comments</h3>
-        <form @submit="postComment" method="POST">
+        <form @submit="postComment">
             <div class="form-group">
-                <textarea rows="4" class="form-control"></textarea>
+                <textarea rows="4" class="form-control" v-model="content"></textarea>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-default">Send</button>
@@ -13,10 +13,10 @@
         <ul class="list-group">
             <li class="list-group-item" v-for="comment in comments">
                 <div>
-                    {{ comment.user}} <span class="small">{{ comment.date }}</span>
+                    {{ comment.user_name}} <span class="small">{{ comment.created_at }}</span>
                 </div>
                 <div>
-                    {{ comment.message }}
+                    {{ comment.content }}
                 </div>
             </li>
         </ul>
@@ -26,28 +26,37 @@
 <script>
     export default {
         mounted() {
-            console.log('comments ready to be loadedzz')
+        //    Vue.http.headers.common['X-CSRF-TOKEN'] = document.getElementById('_token').getAttribute('content')
             this.getComments()
         },
 
         data() {
             return {
-                comments: []
+                id: window.location.pathname.split('/')[2],
+                comments: [],
+                content: ''
             }
         },
 
         methods: {
-            getComments:() => {
-                var id = window.location.pathname
-                id = id.split('/');
-                id = id[2];
-
+            getComments() {
+                this.$http.get('/api/comments/' + this.id).then((response) => {
+                    console.log(response)
+                    this.comments = response.data;
+                })
             },
 
-            postComment: (event) => {
+            postComment(event) {
                 event.preventDefault();
-                console.log('ok');
-            }
+
+                this.$http.post('/api/comments/' + this.id, { content: this.content }).then((response) => {
+                    console.log(response)
+                }, (response) => {
+                    console.log(response)
+                });
+
+                this.content = ''
+            },
         }
     }
 </script>

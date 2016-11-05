@@ -20,8 +20,8 @@ Route::get('/user', function (Request $request) {
 
 Route::get('video/{id}/{string}', ['as' => 'video.watch', 'uses' => 'Api\ApiController@watch']);
 
-Route::get('comments/{id}', 'ApiController@getComments');
-//Route::post('comments/{id}', 'ApiController@postComments');
+Route::get('comments/{id}', ['as' => 'get.comments', 'uses' => 'Api\ApiController@getComments']);
+Route::post('comments/{id}', ['as' => 'post.comments', 'uses' => 'Api\ApiController@postComments']);
 
 //Route::post('favorite/{video_id}', 'ApiController@postFavorite');
 
