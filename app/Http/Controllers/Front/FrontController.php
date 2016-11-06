@@ -22,8 +22,6 @@ class FrontController extends Controller
             return Video::where('validated', true)->get();
         });
         
-        //$videos = Video::where('validated', true)->get();
-
         return view('front.pages.index', [
             'videos' => $videos
         ]);
@@ -45,6 +43,54 @@ class FrontController extends Controller
         return view('front.pages.index', [
             'videos' => $videos
         ]);
+    }
+
+    public function getNews() {
+        $videos = Cache::remember('index', 20, function() {
+            return Video::where('validated', true)->get();
+        });
+        
+        return view('front.pages.index', [
+            'videos' => $videos
+        ]);
+    }
+
+    public function getMostViewed() {
+        $videos = Cache::remember('index', 20, function() {
+            return Video::where('validated', true)->get();
+        });
+        
+        return view('front.pages.index', [
+            'videos' => $videos
+        ]);
+    }
+
+    public function getTopRated() {
+        $videos = Cache::remember('index', 20, function() {
+            return Video::where('validated', true)->get();
+        });
+        
+        return view('front.pages.index', [
+            'videos' => $videos
+        ]);
+    }
+
+    public function getRandom() {
+        $videos = Cache::remember('index', 20, function() {
+            return Video::where('validated', true)->get();
+        });
+        
+        return view('front.pages.index', [
+            'videos' => $videos
+        ]);
+    }
+
+    public function getStars() {
+
+    }
+
+    public function getChannels() {
+        
     }
 
     public function getContact() {

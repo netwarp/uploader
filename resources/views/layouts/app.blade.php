@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}" id="_token">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Uploader') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -37,7 +37,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-inverse navbar-static-top">
+        <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
 
@@ -67,6 +67,13 @@
                         <li><a href="/random">Random</a></li>
                         <li><a href="/stars">Stars</a></li>
                         <li><a href="/channels">Channels</a></li>
+                        <li>
+                            <form action="#" method="GET" class="navbar-form navbar-left">
+                                <div class="form-group">
+                                   <input type="text" class="form-control">
+                                </div>
+                            </form>
+                        </li>
                     </ul>
 
 

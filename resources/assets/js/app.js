@@ -6,9 +6,6 @@
  */
 
 require('./bootstrap');
-var Vue = require('vue');
-Vue.use(require('vue-resource'));
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the body of the page. From here, you may begin adding components to
@@ -16,12 +13,18 @@ Vue.use(require('vue-resource'));
  */
 
 
-//Vue.component('example', require('./components/Example.vue'));
+Vue.component('example', require('./components/Example.vue'));
 Vue.component('comments', require('./components/Comments.vue'));
 Vue.component('favorite', require('./components/Favorite.vue'));
 Vue.component('rate', require('./components/Rate.vue'));
-
+Vue.component('custom-video', require('./components/CustomVideo.vue'));
 
 const app = new Vue({
     el: '#app'
 });
+
+
+var plyr = require('plyr');
+plyr.setup(document.querySelector('video', {
+    controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'fullscreen']
+}));

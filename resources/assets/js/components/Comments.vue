@@ -26,7 +26,6 @@
 <script>
     export default {
         mounted() {
-        //    Vue.http.headers.common['X-CSRF-TOKEN'] = document.getElementById('_token').getAttribute('content')
             this.getComments()
         },
 
@@ -41,7 +40,7 @@
         methods: {
             getComments() {
                 this.$http.get('/api/comments/' + this.id).then((response) => {
-                    console.log(response)
+                  //  console.log(response)
                     this.comments = response.data;
                 })
             },

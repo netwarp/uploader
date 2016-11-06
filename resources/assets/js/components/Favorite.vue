@@ -5,17 +5,7 @@
 <script>
 	export default {
 		mounted() {
-
-		},
-
-		data() {
-			return {
-
-			}
-		},
-
-		methods: {
-			
+		//	console.log('Favorite')
 		}
 	}
 </script>
