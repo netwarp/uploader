@@ -63,13 +63,19 @@
                     </li>
                     <li class="{{ $menu_active == 'menu' ? 'active' : '' }}">
                         <a href="{{ route('admin.menu.index') }}">
-                            <i class="fa fa-clone"></i> Menu
+                            <i class="fa fa-list"></i> Menu
                             <span class="fa fa-chevron-down"></span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <i class="fa fa-ticket"></i> Banners
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.delete.index') }}">
+                            <i class="fa fa-flash"></i> Delete
                             <span class="fa fa-chevron-down"></span>
                         </a>
                     </li>

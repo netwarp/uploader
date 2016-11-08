@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
         'menu' => 'MenuController',
         'pages' => 'PagesController',
        // 'banners' => 'BannersController',
+        'delete' => 'DeleteController',
         'settings' => 'SettingsController'
     ]);
 
