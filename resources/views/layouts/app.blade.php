@@ -21,18 +21,7 @@
     </script>
 
     <style>
-        .navbar-header {
-            background: #222;
-        }
-
-        #logo {
-            position: relative;
-            bottom: 8px;
-        }
-
-        .nav.navbar-nav>li>a {
-            color: #f5f5f5 !important;
-        }
+        
     </style>
 </head>
 <body>
@@ -58,8 +47,6 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="#">&nbsp;</a></li>
-                        <li><a href="#">&nbsp;</a></li>
                         <li><a href="/news">News</a></li>
                         <li><a href="/most-viewed">Most Viewed</a></li>
                         <li><a href="/top-rated">Top Rated</a></li>
@@ -67,10 +54,12 @@
                         <li><a href="/random">Random</a></li>
                         <li><a href="/stars">Stars</a></li>
                         <li><a href="/channels">Channels</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
                         <li>
                             <form action="#" method="GET" class="navbar-form navbar-left">
                                 <div class="form-group">
-                                   <input type="text" class="form-control">
+                                   <input type="text" class="form-control" name="search" placeholder="Search video">
                                 </div>
                             </form>
                         </li>

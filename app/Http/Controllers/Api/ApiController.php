@@ -37,6 +37,21 @@ class ApiController extends Controller
         return $comments;
     }
 
+    public function avatar($id, $string) {
+        $path = storage_path("app/avatars/$id/$string.jpg");
+
+        if (!File::exists($path)) {
+            return;
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header('Content-Type', $type);
+        return $response;
+
+    }
+
     public function postComments($id, Request $request) {
         Log::info($request->get('content'));
         /*

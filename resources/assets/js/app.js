@@ -28,3 +28,5 @@ var plyr = require('plyr');
 plyr.setup(document.querySelector('video', {
     controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'fullscreen']
 }));
+
+  

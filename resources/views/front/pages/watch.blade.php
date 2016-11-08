@@ -10,12 +10,13 @@
 		<div class="col-md-7">
 			<div class="well">
 				<div class="{{-- embed-responsive embed-responsive-16by9 --}}">
-					<custom-video src="{{ "/api/video/$video->id/$video->public_id" }}"></custom-video>
-					{{--
+					{{-- <custom-video src="{{ "/api/video/$video->id/$video->public_id" }}"></custom-video> --}}
+					
+					
 					<video controls>
 				 		<source src="{{ "/api/video/$video->id/$video->public_id" }}" type="video/webm">
 					</video>
-					--}}
+			
 				</div>	
 				<h1 class="h4">{{ $video->title }}</h1>
 				<p>{{ $video->nb_views }}</p>
