@@ -23,8 +23,10 @@ class ApiController extends Controller
         }
         $file = File::get($path);
         $type = File::mimeType($path);
+        $length = File::size($path);
         $response = Response::make($file, 200);
         $response->header("Content-Type", $type);
+        $response->header("Content-Length", $length);
         return $response;
     }
 

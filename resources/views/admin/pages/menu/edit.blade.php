@@ -13,14 +13,15 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<div id="app">
+
 					<form action="{{ route('admin.menu.update', 0) }}" method="POST">
 						{{ csrf_field() }}
 						<input type="hidden" name="_method" value="PUT">
+						<menu-edior></menu-edior>
+						{{--
 						<input type="hidden" name="items" :value="stringify">
-
 						 <div class="col-md-8 col-md-offset-2">
-			                <div class="panel panel-default">
+							 <div class="panel panel-default">
 			                    <div class="panel-heading">
 			                        Edit Menu: <button type="submit" class="btn btn-primary">Save</button>
 			                    </div>
@@ -36,8 +37,9 @@
 			                    </div>
 			                </div>
 			            </div>
+			            --}}
 		            </form>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -46,9 +48,9 @@
 @endsection
 
 @section('scripts')
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.min.js"></script>
+
 	<script>
+		/*
 		new Vue({
 			el: '#app',
 
@@ -90,5 +92,6 @@
 				}
 			}
 		})
+		*/
 	</script>
 @endsection

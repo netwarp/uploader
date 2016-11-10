@@ -25,6 +25,7 @@
 
 <script>
     export default {
+        /*
         mounted() {
             this.fetchitems()
         },
@@ -66,5 +67,6 @@
                 }
             }
         }
+        */
     }
 </script>

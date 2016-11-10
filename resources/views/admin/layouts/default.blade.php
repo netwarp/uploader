@@ -23,10 +23,8 @@
                 @include('admin.includes.footer')
             </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/js/admin.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gentelella/1.3.0/js/custom.js"></script>
-
         @yield('scripts')
     </body>
 </html>

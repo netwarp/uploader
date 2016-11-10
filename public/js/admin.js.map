@@ -1,0 +1,1 @@
+{"version":3,"sources":["admin.js"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"admin.js","sourcesContent":["require('./bootstrap');\r\n\r\nVue.component('example', require('./components/Example.vue'));\r\n\r\nconst app = new Vue({\r\n    el: '#app'\r\n});\r\n\r\nconsole.log('ok22')\r\n"]}
