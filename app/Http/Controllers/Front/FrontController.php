@@ -120,36 +120,13 @@ class FrontController extends Controller
     }
 
     public function test() {
-        /*
-        $path = storage_path('app/toto.mp4');
 
-        if(!File::exists($path)) {
-            echo 'no';
+        if (Auth::check()) {
+            return 'yes';
         }
-        $file = File::get($path);
-        $type = File::mimeType($path);
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
-        return $response;
-        */
-        /*
-        $path = storage_path('app');
-        chdir($path);
-        FFMPEG::convert()->input('toto.mp4')->bitrate(128)->output('test3.avi')->go();
-        echo 'az';
-        */
+        else {
+            return 'no';
+        }
 
-        /*
-        $video = Video::findOrFail(1);
-
-        $comments = $video->comments()->get();
-        dd($comments);
-        */
-
-        Comment::create([
-            'user_name' => 'bob',
-            'video_id' => 1,
-            'content' => 'commentaire 1'
-        ]);
     }
 }

@@ -36,6 +36,35 @@ Route::group(['prefix' => '/', 'namespace' => 'Front'], function() {
     Route::get('conditions', 'FrontController@getConditions');
 
     Route::get('test', ['as' => 'test', 'uses' => 'FrontController@test']);
+
+    Route::post('/comments/{id}', function($id, \Illuminate\Http\Request $request) {
+       if (\Illuminate\Support\Facades\Auth::check()) {
+            \App\Models\Comment::create([
+                'user_name' => \Illuminate\Support\Facades\Auth::user()->name,
+                'video_id' => $id,
+                'content' => $request->get('content')
+            ]);
+           return [
+               'status' => 'success',
+               'message' => 'Comment successfully created'
+           ];
+       }
+       else {
+           return [
+               'status' => 'error',
+               'message' => 'You must be logged'
+           ];
+       }
+    });
+    Route::get('/user', function() {
+        if (\Illuminate\Support\Facades\Auth::check()) {
+            $user = [
+                'name' => \Illuminate\Support\Facades\Auth::user()->name
+            ];
+
+            return $user;
+        }
+    });
 });
 
 Auth::routes();

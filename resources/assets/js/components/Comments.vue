@@ -26,33 +26,55 @@
 <script>
     export default {
         mounted() {
-            this.getComments()
+            this.getComments();
+            this.getUser();
         },
 
         data() {
             return {
                 id: window.location.pathname.split('/')[2],
                 comments: [],
-                content: ''
+                user: {},
+                content: '',
+                status: '',
+                message: '',
             }
         },
 
         methods: {
             getComments() {
                 this.$http.get('/api/comments/' + this.id).then((response) => {
-                  //  console.log(response)
                     this.comments = response.data;
+                })
+            },
+
+            getUser() {
+                this.$http.get('/user').then((response) => {
+                    this.user = response.data
                 })
             },
 
             postComment(event) {
                 event.preventDefault();
 
-                this.$http.post('/api/comments/' + this.id, { content: this.content }).then((response) => {
-                    console.log(response)
+                var data = {
+                    content: this.content,
+                };
+
+                this.comments.unshift({
+                    user_name: this.user.name,
+                    content: this.content,
+                    created_at: 'now'
+
+                })
+
+                this.$http.post('/comments/' + this.id, data).then((response) => {
+                    console.log(response.data)
+
                 }, (response) => {
                     console.log(response)
                 });
+
 
                 this.content = ''
             },

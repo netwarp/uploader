@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use File;
+use Illuminate\Support\Facades\Auth;
 use Response;
 use App\Models\Video;
 use Log;
-use Auth;
 use App\Models\Comment;
 
 class ApiController extends Controller
@@ -32,11 +32,18 @@ class ApiController extends Controller
 
     public function getComments($id) {
         $video = Video::findOrFail($id);
-        $comments = $video->comments()->get();
-        //return $comments;
-
-        $comments = Comment::where('video_id', $id)->get();
+        $comments = $video->comments()->orderBy('id', 'desc')->get();
         return $comments;
+    }
+
+    public function postComments($id, Request $request) {
+        if ($request->ajax()) {
+            return $request;
+        }
+        else {
+            return 'no';
+        }
+
     }
 
     public function avatar($id, $string) {
@@ -54,27 +61,5 @@ class ApiController extends Controller
 
     }
 
-    public function postComments($id, Request $request) {
-        Log::info($request->get('content'));
-        /*
-        if (Auth::guest()) {
-            return $response = [
-                'status' => false,
-                'message' => 'You must to be logged to comment'
-            ];
-        };
-        */
-        
-        Comment::create([
-            'user_name' => Auth::user()->name,
-            'video_id' => $id,
-            'content' => $request->get('content')
-        ]);
-        
 
-        return $response = [
-            'status' => true,
-            'message' => 'Thanks for comment'
-        ];
-    }
 }
