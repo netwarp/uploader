@@ -18,14 +18,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 
-Route::get('video/{id}/{string}', ['as' => 'video.watch', 'uses' => 'Api\ApiController@watch']);
-Route::get('avatar/{id}/{string}', ['as' => 'avatar', 'uses' => 'Api\ApiController@avatar']);
-
-Route::get('comments/{id}', ['as' => 'get.comments', 'uses' => 'Api\ApiController@getComments']);
-//Route::post('comments/{id}', ['as' => 'post.comments', 'uses' => 'Api\ApiController@postComments']);
-
-//Route::post('favorite/{video_id}', 'ApiController@postFavorite');
-
-//Route::post('rate/{video_id}', 'ApiController@postRate');
-
-
+Route::get('test', 'Api\ApiController@test');

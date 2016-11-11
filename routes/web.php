@@ -37,34 +37,6 @@ Route::group(['prefix' => '/', 'namespace' => 'Front'], function() {
 
     Route::get('test', ['as' => 'test', 'uses' => 'FrontController@test']);
 
-    Route::post('/comments/{id}', function($id, \Illuminate\Http\Request $request) {
-       if (\Illuminate\Support\Facades\Auth::check()) {
-            \App\Models\Comment::create([
-                'user_name' => \Illuminate\Support\Facades\Auth::user()->name,
-                'video_id' => $id,
-                'content' => $request->get('content')
-            ]);
-           return [
-               'status' => 'success',
-               'message' => 'Comment successfully created'
-           ];
-       }
-       else {
-           return [
-               'status' => 'error',
-               'message' => 'You must be logged'
-           ];
-       }
-    });
-    Route::get('/user', function() {
-        if (\Illuminate\Support\Facades\Auth::check()) {
-            $user = [
-                'name' => \Illuminate\Support\Facades\Auth::user()->name
-            ];
-
-            return $user;
-        }
-    });
 });
 
 Auth::routes();
@@ -72,6 +44,19 @@ Auth::routes();
 Route::get('/confirm/{id}/{token}', 'Auth\RegisterController@confirm');
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix' => 'api', 'namespace' => 'Api', 'as' => 'api.'], function() {
+    Route::get('video/{id}/{string}', ['as' => 'video.watch', 'uses' => 'ApiController@watch']);
+    Route::get('avatar/{id}/{string}', ['as' => 'avatar', 'uses' => 'ApiController@avatar']);
+
+    Route::get('comments/{id}', ['as' => 'get.comments', 'uses' => 'ApiController@getComments']);
+    Route::post('comments/{id}', ['as' => 'post.comments', 'uses' => 'ApiController@postComments']);
+
+    //Route::post('favorite/{video_id}', 'ApiController@postFavorite');
+
+    //Route::post('rate/{video_id}', 'ApiController@postRate');
+});
+
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
     Route::get('/', ['as' => 'index', 'uses' => 'AdminController@index']);

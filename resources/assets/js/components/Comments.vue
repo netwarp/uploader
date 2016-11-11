@@ -9,6 +9,9 @@
                 <button type="submit" class="btn btn-default">Send</button>
             </div>
         </form>
+        <div v-if="this.message">
+            {{ message }}
+        </div>
         <hr>
         <ul class="list-group">
             <li class="list-group-item" v-for="comment in comments">
@@ -27,7 +30,6 @@
     export default {
         mounted() {
             this.getComments();
-            this.getUser();
         },
 
         data() {
@@ -37,7 +39,7 @@
                 user: {},
                 content: '',
                 status: '',
-                message: '',
+                message: false,
             }
         },
 
@@ -48,12 +50,6 @@
                 })
             },
 
-            getUser() {
-                this.$http.get('/user').then((response) => {
-                    this.user = response.data
-                })
-            },
-
             postComment(event) {
                 event.preventDefault();
 
@@ -61,23 +57,24 @@
                     content: this.content,
                 };
 
-                this.comments.unshift({
-                    user_name: this.user.name,
-                    content: this.content,
-                    created_at: 'now'
-
-                })
-
-                this.$http.post('/comments/' + this.id, data).then((response) => {
-                    console.log(response.data)
+                this.$http.post('/api/comments/' + this.id, data).then((response) => {
+                    console.log(response.data);
+                    this.message = response.data.message;
+                    this.status = response.data.status;
 
                 }, (response) => {
                     console.log(response)
                 });
 
+                this.comments.unshift({
+                    user_name: 'You',
+                    content: this.content,
+                    created_at: 'now'
+                });
+
 
                 this.content = ''
             },
-        }
+        },
     }
 </script>

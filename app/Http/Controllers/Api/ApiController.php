@@ -10,7 +10,6 @@ use File;
 use Illuminate\Support\Facades\Auth;
 use Response;
 use App\Models\Video;
-use Log;
 use App\Models\Comment;
 
 class ApiController extends Controller
@@ -37,13 +36,25 @@ class ApiController extends Controller
     }
 
     public function postComments($id, Request $request) {
-        if ($request->ajax()) {
-            return $request;
+       
+        if (Auth::check()) {
+            Comment::create([
+                'user_name' => Auth::user()->name,
+                'video_id' => $id,
+                'content' => $request->get('content')
+            ]);
+
+            return [
+                'status' => 'success',
+                'message' => 'Comment successfully created'
+            ];
         }
         else {
-            return 'no';
+            return [
+                'status' => 'error',
+                'message' => 'Need login'
+            ];
         }
-
     }
 
     public function avatar($id, $string) {
@@ -61,5 +72,13 @@ class ApiController extends Controller
 
     }
 
-
+    public function test() {
+        Comment::create([
+            'user_name' => 'toto',
+            'video_id' => 1,
+            'content' => 'lorem ipsim'
+        ]);
+        
+        return 'e';
+    }
 }
