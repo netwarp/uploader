@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Response;
 use App\Models\Video;
 use App\Models\Comment;
+use App\Models\Favorite;
 
 class ApiController extends Controller
 {
@@ -18,7 +19,7 @@ class ApiController extends Controller
     	$path = storage_path("app/videos/$id/$string.webm");
 
         if(!File::exists($path)) {
-            dd($path);
+            return;
         }
         $file = File::get($path);
         $type = File::mimeType($path);
@@ -27,6 +28,20 @@ class ApiController extends Controller
         $response->header("Content-Type", $type);
         $response->header("Content-Length", $length);
         return $response;
+    }
+
+    public function avatar($id, $string) {
+        $path = storage_path("app/avatars/$id/$string.jpg");
+
+        if (!File::exists($path)) {
+            return;
+        }
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header('Content-Type', $type);
+        return $response;
+
     }
 
     public function getComments($id) {
@@ -57,19 +72,28 @@ class ApiController extends Controller
         }
     }
 
-    public function avatar($id, $string) {
-        $path = storage_path("app/avatars/$id/$string.jpg");
+    
 
-        if (!File::exists($path)) {
-            return;
+    public function postFavorite($id, Request $request) {
+        if ($request->ajax()) {
+            if (Auth::guest()) {
+                return 'You must to be loged';
+            }
+            else {
+                $favorite = Favorite::where('user_id', Auth::id())->where('video_id', $id)->first();
+
+                if (is_null($favorite)) {
+                    Favorite::create([
+                        'user_id' => Auth::id(),
+                        'video_id' => $id
+                    ]);
+                    return 'This video is in your favorites';
+                }
+                else {
+                    return 'This video is already in your favorites';
+                }
+            }
         }
-
-        $file = File::get($path);
-        $type = File::mimeType($path);
-        $response = Response::make($file, 200);
-        $response->header('Content-Type', $type);
-        return $response;
-
     }
 
     public function test() {

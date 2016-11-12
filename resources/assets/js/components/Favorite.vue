@@ -1,23 +1,32 @@
 <template>
-	<button type="button" class="btn btn-primary btn-sm" @click="addFavorite">Favorite</button>
+	<div style="display: inline;">
+		<p v-if="">
+			{{ message }}
+		</p>
+		<button type="button" class="btn btn-primary btn-sm" @click="addFavorite">Favorite</button>
+	</div>
 </template>
 
 <script>
 	export default {
 		mounted() {
-		//	console.log('Favorite')
+			console.log('Favorite')
 		}, 
 
 		data() {
 			return {
-				favorite: false
+				id: window.location.pathname.split('/')[2],
+				message: null
 			}
 		},
 
 		methods: {
 			addFavorite() {
-				this.$http.get('api/favorite/video_id/user_id').then((response) => {
-					console.log()
+				this.$http.post('/api/favorite/' + this.id, {}).then((response) => {
+					console.log(response);
+					this.message = response.data;
+				}, (response) => {
+
 				})
 			}
 		}

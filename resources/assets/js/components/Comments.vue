@@ -72,7 +72,6 @@
                     created_at: 'now'
                 });
 
-
                 this.content = ''
             },
         },
