@@ -13,9 +13,20 @@ use App\Models\Video;
 use App\Models\Comment;
 use App\Models\Favorite;
 
+use App\Models\VideoStream;
+
 class ApiController extends Controller
 {
     public function watch($id, $string) {
+        $videosDir = storage_path("app/videos/$id");
+        if (file_exists($filePath = $videosDir."/".$string . '.webm')) {
+            $stream = new VideoStream($filePath);
+            return response()->stream(function() use ($stream) {
+                $stream->start();
+            });
+        }
+        return response("File doesn't exists", 404);
+        /*
     	$path = storage_path("app/videos/$id/$string.webm");
 
         if(!File::exists($path)) {
@@ -28,6 +39,7 @@ class ApiController extends Controller
         $response->header("Content-Type", $type);
         $response->header("Content-Length", $length);
         return $response;
+        */
     }
 
     public function avatar($id, $string) {
