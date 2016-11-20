@@ -6,4 +6,3 @@ Vue.component('menu-editor', require('./components/MenuEditor.vue'));
 const app = new Vue({
     el: '#app'
 });
-

@@ -109,7 +109,9 @@ class MenuController extends Controller
 
     public function fetchMenu() {
         $items = Redis::get('menu');
-
+        if (empty($items)) {
+            return [];
+        }
         return $items;
     }
 }

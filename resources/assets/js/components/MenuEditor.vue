@@ -1,5 +1,6 @@
 <template>
     <form action="/admin/menu/0" method="POST">
+        <input type="hidden" name="_token" :value="token">
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="items" :value="stringify">
 
@@ -12,7 +13,7 @@
                     <input type="text" class="form-control" placeholder="Enter new item" v-model="newItem" @keydown.enter.prevent="addItem">
                     <br>
                     <ul class="list-group">
-                        <li class="list-group-item" v-for="item in items | orderBy 'item'">
+                        <li class="list-group-item" v-for="item in items">
                             <span v-text="item"></span>
                             <button type="button" class="btn btn-dark btn-xs pull-right" @click="removeItem(item)">Remove</button>
                         </li>
@@ -25,12 +26,10 @@
 
 <script>
     export default {
-        /*
+        
         mounted() {
             this.fetchitems()
         },
-
-        props: [],
 
         data() {
             return {
@@ -43,30 +42,31 @@
                 var item = this.newItem
                 if (item) {
                     this.items.push(item)
+                    this.items.sort()
                 }
-
-
                 this.newItem = ''
             },
 
             removeItem: function(item) {
-                this.items.$remove(item)
+                this.items.splice(item, 1)
             },
 
             fetchitems: function() {
-                this.$http.get('{{ route('admin.fetch-menu') }}').then(function(response) {
-                    var data = JSON.parse(response.data)
-
+                this.$http.get('/admin/fetch-menu').then(function(response) {
+                    var data = JSON.parse(response.data).sort()
                     this.items = data
                 })
             },
+        },
 
-            computed: {
-                stringify: function() {
-                    return JSON.stringify(this.items)
-                }
+        computed: {
+            stringify: function() {
+                return JSON.stringify(this.items)
+            },
+
+            token: function() {
+                return document.getElementById('token').getAttribute('content')
             }
         }
-        */
     }
 </script>

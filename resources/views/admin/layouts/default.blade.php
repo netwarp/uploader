@@ -7,6 +7,10 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="/css/app.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <script>
+            window.Laravel = { csrfToken: '{{ csrf_token() }}' };
+        </script>
+        <meta name="csrf-token" id="token" content="{{ csrf_token() }}">
         @yield('styles')
         <title>@yield('title')</title>
     </head>
