@@ -56,6 +56,20 @@ class ApiController extends Controller
 
     }
 
+    public function thumbnail($id, $public_id, $index) {
+        $path = storage_path("app/videos/$id");
+        if (File::exists($path)) {
+            $array = File::files($path);
+            $array = array_slice($array, 2);
+            $file = File::get($array[$index]);
+            $type = File::mimeType($array[$index]);
+            $response = Response::make($file, 200);
+            $response->header('Content-Type', $type);
+            return $response;
+        }
+
+    }
+
     public function getComments($id) {
         $video = Video::findOrFail($id);
         $comments = $video->comments()->orderBy('id', 'desc')->get();

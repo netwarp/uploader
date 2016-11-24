@@ -49,11 +49,12 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api', 'as' => 'api.'], function
     Route::get('video/{id}/{string}', ['as' => 'video.watch', 'uses' => 'ApiController@watch']);
     Route::get('avatar/{id}/{string}', ['as' => 'avatar', 'uses' => 'ApiController@avatar']);
 
+    Route::get('thumbnail/{id}/{public_id}/{index}', ['as' => 'thumbnail', 'uses' => 'ApiController@thumbnail']);
+
     Route::get('comments/{id}', ['as' => 'get.comments', 'uses' => 'ApiController@getComments']);
     Route::post('comments/{id}', ['as' => 'post.comments', 'uses' => 'ApiController@postComments']);
 
     Route::post('favorite/{video_id}', 'ApiController@postFavorite');
-
     //Route::post('rate/{video_id}', 'ApiController@postRate');
 });
 
