@@ -20,6 +20,7 @@
                             Your browser does not support the video tag, please use firefox or chrome
                         </video>
                     </div>
+                    {{-- TODO round string 2 --}}
                     <p>User: <a href="#">{{ $video->user()->first()->name  }}</a></p>
                     <p>Duration: {{ $video->duration }}</p>
                 </div>

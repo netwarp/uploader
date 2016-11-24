@@ -17,20 +17,25 @@ use App\Models\Comment;
 class FrontController extends Controller
 {
     public function getIndex() {
-        
-        $videos = Cache::remember('index', 20, function() {
-            return Video::where('validated', true)->get();
+
+        Cache::add('index', Video::where('validated', true)->orderBy('id', 'desc')->get(), 2);
+
+        $videos = Cache::get('index', function() {
+            return Video::where('validated', true)->orderBy('id', 'desc')->get();
         });
-        
+
         return view('front.pages.index', [
             'videos' => $videos
         ]);
-        
-
     }
 
     public function getWatch($id, $slug) {
-        $video = Video::findOrFail($id);
+
+        Cache::add("video:$id", Video::findOrFail($id), 2);
+
+        $video = Cache::get("video:$id", function() {
+            return Video::findOrFail($id);;
+        });
 
         return view('front.pages.watch', [
             'video' => $video
@@ -38,6 +43,7 @@ class FrontController extends Controller
     }
 
     public function getTag($tag) {
+        
         $videos = Video::withAnyTag($tag)->get();
 
         return view('front.pages.index', [
@@ -121,12 +127,7 @@ class FrontController extends Controller
 
     public function test() {
 
-        if (Auth::check()) {
-            return 'yes';
-        }
-        else {
-            return 'no';
-        }
+        dd(proc_get_status("ffmpeg -i yp90OWWU04.mp4 yp90OWWU04.webm > /dev/null &"));
 
     }
 }

@@ -118,8 +118,8 @@ class ValidationsController extends Controller
             exec($command);
 
             $images = File::files($path);
-            $images = array_slice($images, 2);
-            // TODO if extension = jpg
+            $images = array_slice($images, 0, -2);
+            
             foreach ($images as $image) {
                 $img = Image::make($image);
                 $img->resize(220, null, function($constraint) {
