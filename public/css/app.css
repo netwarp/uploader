@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -12827,6 +12826,38 @@ ul.notifications {
     top: 50%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
+
+.card {
+  position: relative;
+  display: inline-block;
+  width: 220px;
+  margin: .75rem;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 0;
+  box-shadow: 0 1px 3px 0 #101010,0 0 0 1px #101010; }
+  .card a {
+    color: #555; }
+  .card .card-image {
+    position: relative;
+    width: 220px;
+    min-height: 100px;
+    background: #eee; }
+    .card .card-image .corner {
+      position: absolute;
+      background: #000;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 4px; }
+      .card .card-image .corner.br {
+        bottom: 0;
+        right: 0; }
+  .card .card-content {
+    padding: 4px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px; }
 
 .navbar-header {
   background: #222; }
