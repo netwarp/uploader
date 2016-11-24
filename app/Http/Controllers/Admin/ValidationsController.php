@@ -93,40 +93,44 @@ class ValidationsController extends Controller
         $validation = $request->get('validation');
 
         if ($validation == 'true') {
-            $tags = $request->get('tags');
-            $tags = explode(' ', $tags);
+            if ($request->has('tags')) {
+                $tags = $request->get('tags');
+                $tags = explode(' ', $tags);
+                $video->tag($tags);
+            }
 
-            $video->tag($tags);
+            $nb_thumbnails = 12;
+
+            $path = storage_path("app/videos/$id");
+            chdir($path);
+
+            $file = File::files($path)[0];
+            $name = File::name($file);
+            $complete_name = basename($file);
+
+            $total_seconds = shell_exec("ffprobe -i $file -show_format -v quiet | sed -n 's/duration=//p'");
+            $total_seconds = floor($total_seconds);
+
+            $fps = $total_seconds / $nb_thumbnails;
+            $fps = floor($fps);
+
+            $command = "ffmpeg -i $complete_name -vf fps=1/$fps __thumb-$name-%d.jpg";
+            exec($command);
+
+            $images = File::files($path);
+            $images = array_slice($images, 2);
+            // TODO if extension = jpg
+            foreach ($images as $image) {
+                $img = Image::make($image);
+                $img->resize(220, null, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $img->save($image);
+            }
+                
             $video->validated = true;
             $video->save();
             return redirect()->route('admin.validations.index')->with('success', 'The video has been validated');
-        }
-
-        $nb_thumbnails = 12;
-
-        $path = storage_path("app/videos/$id");
-        chdir($path);
-
-        $file = File::files($path)[0];
-        $name = File::name($file);
-        $complete_name = basename($file);
-
-        $total_seconds = shell_exec("ffprobe -i $file -show_format -v quiet | sed -n 's/duration=//p'");
-        $total_seconds = floor($total_seconds);
-
-        $fps = $total_seconds / $nb_thumbnails;
-        $fps = floor($fps);
-
-        $command = "ffmpeg -i $complete_name -vf fps=1/$fps thumb-$name-%d.jpg";
-        exec($command);
-
-        $images = File::files($path);
-        $images = array_slice($images, 2);
-
-        foreach ($images as $image) {
-            $img = Image::make($image);
-            $img->resize(220, 170);
-            $img->save($image);
         }
 
         return redirect()->back();
