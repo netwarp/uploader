@@ -17,9 +17,17 @@
 				</div>	
 				<h1 class="h4">{{ $video->title }}</h1>
 				<p>{{ $video->nb_views }}</p>
-
+				@if(session()->has('error'))
+					<div class="alert alert-info">
+						{{ session('error') }}. <a href="/login">Login</a> or <a href="/register">Register</a> if you don't have account.
+					</div>
+				@endif
 				<favorite></favorite>
-				<a href="#" class="btn btn-dark btn-sm">Download</a>
+				<form action="/api/download/{{ $video->id }}/{{ $video->public_id }}" method="POST" style="display: inline;">
+					{{ csrf_field() }}
+					<button type="submit" class="btn btn-dark btn-sm">Download</button>
+				</form>
+				
 				<button type="button" class="btn btn-info btn-sm">Rate</button>
 
 				<p>

@@ -122,6 +122,17 @@ class ApiController extends Controller
         }
     }
 
+    public function download($id, $public_id) {
+        if (Auth::guest()) {
+            return redirect()->back()->with('error', 'You must to be logged to download the file');
+        }
+        else {
+            $title = Video::findOrFail($id)->title;
+            $path = storage_path("app/videos/$id/$public_id.webm");
+            return response()->download($path, "$title.webm");
+        }
+    }
+
     public function test() {
         Comment::create([
             'user_name' => 'toto',

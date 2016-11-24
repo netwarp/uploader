@@ -55,6 +55,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api', 'as' => 'api.'], function
     Route::post('comments/{id}', ['as' => 'post.comments', 'uses' => 'ApiController@postComments']);
 
     Route::post('favorite/{video_id}', 'ApiController@postFavorite');
+    Route::post('download/{id}/{public_id}', ['as' => 'download', 'uses' => 'ApiController@download']);
     //Route::post('rate/{video_id}', 'ApiController@postRate');
 });
 
