@@ -44,9 +44,9 @@
                                 @elseif(\Request::route()->getName() == 'admin.validations.index')
                                     <td><a href="{{ route('admin.validations.edit', $video->id) }}">{{ $video->title  }}</a></td>
                                 @endif
-                                <td>{{ $video->user_id }}</td>
+                                <td><a href="{{ route('admin.users.edit', $video->user_id) }}">{{ $video->user->name }}</a></td>
                                 <td>12</td>
-                                <td>{{ $video->created_at }}</td>
+                                <td>{{ $video->created_at->format('d/m/Y h:i') }}</td>
                                 <td>
                                     <a href="{{ route('admin.videos.edit', $video->id) }}" class="btn btn btn-dark btn-sm"><i class="fa fa-pencil"></i> Edit</a>
                                     <form action="{{ route('admin.videos.destroy', $video->id) }}" style="display: inline;" method="POST">

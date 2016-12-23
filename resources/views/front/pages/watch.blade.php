@@ -9,8 +9,8 @@
 		</div>
 		<div class="col-md-7">
 			<div class="well">
-				<div class="{{-- embed-responsive embed-responsive-16by9 --}}">					
-					<video controls>
+				<div class="{{-- embed-responsive embed-responsive-16by9 --}}">
+					<video controls style="width: 100%;">
 				 		<source src="{{ "/api/video/$video->id/$video->public_id" }}" type="video/webm">
 					</video>
 			
@@ -23,13 +23,11 @@
 					</div>
 				@endif
 				<favorite></favorite>
+				<button type="button" class="btn btn-info btn-sm">Rate</button>
 				<form action="/api/download/{{ $video->id }}/{{ $video->public_id }}" method="POST" style="display: inline;">
 					{{ csrf_field() }}
 					<button type="submit" class="btn btn-dark btn-sm">Download</button>
 				</form>
-				
-				<button type="button" class="btn btn-info btn-sm">Rate</button>
-
 				<p>
 					<a href="#">{{ $video->user->name }}</a>	
 				</p>
@@ -54,22 +52,17 @@
 
 		</div>
 		<div class="col-md-3">
-			<div class="well">
-				<ul class="list-group">
+
+			<related></related>
+			{{--
+				<ul class="list-group watch-related">
 					<li class="list-group-item">
-						video
-					</li>
-					<li class="list-group-item">
-						video
-					</li>
-					<li class="list-group-item">
-						video
-					</li>
-					<li class="list-group-item">
-						video
+						<img src="http://placehold.it/168x94" alt="img">
+						<h6>test</h6>
+						<h6>5 min</h6>
 					</li>
 				</ul>
-			</div>
+			--}}
 		</div>
 
 	</div>

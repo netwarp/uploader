@@ -15,13 +15,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersTableSeeder::class);
         $this->call(MessagesTableSeeder::class);
-        //$this->call(PagesTableSeeder::class);
+        $this->call(PagesTableSeeder::class);
+        //$this->call(VideosTableSeeder::class);
     }
 }
 
-class UsersTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder 
 {
-    public function run()
+    public function run() 
     {
         DB::table('users')->insert([
            'name' => 'admin',
@@ -32,6 +33,26 @@ class UsersTableSeeder extends Seeder
             'avatar' => 'toto',
             'ip' => '01'
         ]);
+    }
+}
+
+class VideosTableSeeder extends Seeder
+{
+    public function run()
+    {
+        $faker = Faker\Factory::create();
+        $limit = 220;
+
+        for ($i = 0; $i < $limit; $i++) {
+            DB::table('videos')->insert([
+                'public_id' => str_random(10),
+                'title' => $title = $faker->sentence($nbWords = 6, $variableNbWords = true),
+                'slug' => str_slug($title),
+                'duration' => $faker->time($format = 'H:i:s', $max = 'now'),
+                'user_id' => 1,
+                'path' => ''
+            ]);
+        }
     }
 }
 

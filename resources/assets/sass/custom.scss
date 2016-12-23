@@ -1,5 +1,8 @@
+// variables
+$primary-bg = #2A3F54;
+
 .left_col {
-  background: #2A3F54;
+  background: $primary-bg;
 }
 .nav-sm .container.body .col-md-3.left_col {
   width: 70px;
@@ -208,7 +211,7 @@ body .container.body .right_col {
 .nav_title {
   width: 230px;
   float: left;
-  background: #2A3F54;
+  background: $primary-bg;
   border-radius: 0;
   height: 57px;
 }
@@ -334,7 +337,7 @@ body .container.body .right_col {
 }
 body {
   color: #73879C;
-  background: #2A3F54;
+  background: $primary-bg;
   font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
   font-size: 13px;
   font-weight: 400;
@@ -576,10 +579,10 @@ a:hover, a:focus {
 .nav.side-menu> li.active > a {
   text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5b6479), color-stop(100%, #4c5566)), #686e78;
-  background: -webkit-linear-gradient(#334556, #2C4257), #2A3F54;
-  background: -moz-linear-gradient(#334556, #2C4257), #2A3F54;
-  background: -o-linear-gradient(#334556, #2C4257), #2A3F54;
-  background: linear-gradient(#334556, #2C4257), #2A3F54;
+  background: -webkit-linear-gradient(#334556, #2C4257), $primary-bg;
+  background: -moz-linear-gradient(#334556, #2C4257), $primary-bg;
+  background: -o-linear-gradient(#334556, #2C4257), $primary-bg;
+  background: linear-gradient(#334556, #2C4257), $primary-bg;
   -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
   -moz-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
   box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
@@ -1535,7 +1538,7 @@ span.right {
   padding: 5px 0 0 0;
   position: fixed;
   width: 230px;
-  background: #2A3F54;
+  background: $primary-bg;
 }
 .sidebar-footer a {
   padding: 7px 0 3px;

@@ -10,7 +10,7 @@
 <script>
 	export default {
 		mounted() {
-			console.log('Favorite')
+
 		}, 
 
 		data() {
@@ -26,7 +26,7 @@
 					console.log(response);
 					this.message = response.data;
 				}, (response) => {
-
+					console.log(response);
 				})
 			}
 		}

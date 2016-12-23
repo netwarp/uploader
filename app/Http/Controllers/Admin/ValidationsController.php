@@ -119,13 +119,14 @@ class ValidationsController extends Controller
 
             $images = File::files($path);
             $images = array_slice($images, 0, -2);
-            
             foreach ($images as $image) {
-                $img = Image::make($image);
-                $img->resize(220, null, function($constraint) {
-                    $constraint->aspectRatio();
-                });
-                $img->save($image);
+                if (File::extension($image) == 'jpg' || File::extension($image) == 'jpeg') {
+                    $img = Image::make($image);
+                    $img->resize(220, null, function($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $img->save($image);
+                }
             }
                 
             $video->validated = true;

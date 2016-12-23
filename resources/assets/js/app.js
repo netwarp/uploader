@@ -17,6 +17,7 @@ Vue.component('example', require('./components/Example.vue'));
 Vue.component('comments', require('./components/Comments.vue'));
 Vue.component('favorite', require('./components/Favorite.vue'));
 Vue.component('rate', require('./components/Rate.vue'));
+Vue.component('related', require('./components/Related.vue'));
 
 const app = new Vue({
     el: '#app'

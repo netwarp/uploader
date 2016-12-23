@@ -26,20 +26,6 @@ class ApiController extends Controller
             });
         }
         return response("File doesn't exists", 404);
-        /*
-    	$path = storage_path("app/videos/$id/$string.webm");
-
-        if(!File::exists($path)) {
-            return;
-        }
-        $file = File::get($path);
-        $type = File::mimeType($path);
-        $length = File::size($path);
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
-        $response->header("Content-Length", $length);
-        return $response;
-        */
     }
 
     public function avatar($id, $string) {
@@ -133,6 +119,18 @@ class ApiController extends Controller
         }
     }
 
+    public function related($id){
+        $video = Video::findOrFail($id);
+        $tags = [];
+        foreach ($video->tags as $tag) {
+            array_push($tags, $tag->name);
+        }
+        $videos = Video::withAnyTag($tags)->get();
+        foreach ($videos as $video) {
+            $video->username = $video->user;
+        }
+        return $videos;
+    }
     public function test() {
         Comment::create([
             'user_name' => 'toto',

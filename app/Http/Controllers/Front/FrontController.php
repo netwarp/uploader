@@ -12,7 +12,8 @@ use App\Mail\Contacted;
 use App\Models\Page;
 use Cache;
 use Auth;
-use App\Models\Comment;
+use App\User;
+use Session;
 
 class FrontController extends Controller
 {
@@ -36,6 +37,21 @@ class FrontController extends Controller
         $video = Cache::get("video:$id", function() {
             return Video::findOrFail($id);;
         });
+
+        $video_session = Session::get('video_session');
+
+        if (empty($video_session)) {
+            $video->increment('nb_views');
+            Session::push('video_session', $id);
+
+        }
+        else {
+            if (!in_array($id, $video_session)) {
+                $video->increment('nb_views');
+                Session::push('video_session', $id);
+
+            }
+        }
 
         return view('front.pages.watch', [
             'video' => $video
@@ -96,7 +112,11 @@ class FrontController extends Controller
     }
 
     public function getChannels() {
-        
+        $channels = User::orderBy('id', 'desc')->get();
+
+        return view('front.pages.channels', [
+            'channels' => $channels
+        ]);
     }
 
     public function getContact() {

@@ -6,7 +6,7 @@
         <div class="clearfix"></div>
         <div class="profile">
             <div class="profile_pic">
-                <img src="http://placehold.it/50x50" alt="photo" class="img-circle profile_img">
+                <img src="/api/avatar/{{ Auth::id() }}/{{ hash('ripemd160', Auth::id()) }}" alt="photo" class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Welcome</span>
