@@ -77,4 +77,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin
     ]);
 
     Route::get('fetch-menu', ['as' => 'fetch-menu', 'uses' => 'MenuController@fetchMenu']);
+   
+    Route::get('converting', ['as' => 'converting.index', 'uses' => 'ConvertingController@index']);
 });

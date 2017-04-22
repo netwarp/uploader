@@ -12,6 +12,7 @@ use Auth;
 use Storage;
 use App\User;
 use Log;
+use Redis;
 
 class VideosController extends Controller
 {
@@ -50,18 +51,14 @@ class VideosController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info($request);
-
         $validator = Validator::make($request->all(), [
             'file'  => 'required|mimes:mp4,mov,ogg,avi|max:50000'
         ]);
 
         if ($validator->fails()) {
-            Log::info('no');
             return 'no';
         }
         else {
-            Log::info('yes');
             $file = $request->file('file');
 
             $video = new Video;
@@ -83,7 +80,18 @@ class VideosController extends Controller
             Storage::putFileAs($destination, $file, $filename);
 
             $video->path = "/videos/$video->id/$random_string";
+            $video->save();
 
+
+            if ($extension != 'webm') {
+                Redis::publish('converter', json_encode([
+                    'id' => $video->id,
+                    'public_id' => $random_string,
+                    'path' =>  "videos/$video->id",
+                    'extension' => $extension
+                ]));
+            }
+            /*
             $file_path = storage_path("app/videos/$video->id");
             chdir($file_path);
 
@@ -94,6 +102,7 @@ class VideosController extends Controller
                 $command = "ffmpeg -i $filename $random_string.webm > /dev/null &";
                 exec($command);
             }
+            */
 
             return redirect()->route('admin.videos.index')->with('success', 'Video uploaded');
         }
@@ -144,7 +153,7 @@ class VideosController extends Controller
 
         $tags = $request->get('tags');
         $tags = explode(' ', $tags);
-        
+
         $video->tag($tags);
 
         return redirect()->route('admin.videos.index')->with('success', 'Video updated');

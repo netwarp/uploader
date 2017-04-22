@@ -40,6 +40,11 @@
                             <li><a href="{{ route('admin.validations.index') }}">Wait for validation</a></li>
                         </ul>
                     </li>
+                    <li class="{{ $menu_active == 'converting' ? 'active' : '' }}">
+                        <a href="{{ route('admin.converting.index') }}">
+                            <i class="fa fa-spinner" aria-hidden="true"></i>Converting
+                        </a>
+                    </li>
                     <li class="{{ $menu_active == 'tags' ? 'active' : '' }}">
                         <a href="#">
                             <i class="fa fa fa-tags"></i> Tags

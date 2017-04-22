@@ -15,6 +15,8 @@ use Auth;
 use App\User;
 use Session;
 
+use Redis;
+
 class FrontController extends Controller
 {
     public function getIndex() {
@@ -146,8 +148,9 @@ class FrontController extends Controller
     }
 
     public function test() {
-
-        dd(proc_get_status("ffmpeg -i yp90OWWU04.mp4 yp90OWWU04.webm > /dev/null &"));
-
+        
+        $datas = Redis::keys('*converter*');
+        var_dump($datas);
+        echo Redis::get('converter:42');
     }
 }

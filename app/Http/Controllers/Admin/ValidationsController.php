@@ -11,6 +11,8 @@ use Storage;
 use File;
 use Image;
 
+use Redis;
+
 class ValidationsController extends Controller
 {
     /**
@@ -93,6 +95,13 @@ class ValidationsController extends Controller
         $validation = $request->get('validation');
 
         if ($validation == 'true') {
+            Redis::publish('converter', json_encode([
+                'id' => $video->id,
+                'public_id' => $video->public_id,
+                'path' => $video->path,
+                'nb_thumbnails' => 12
+            ]));
+            /*
             if ($request->has('tags')) {
                 $tags = $request->get('tags');
                 $tags = explode(' ', $tags);
@@ -131,6 +140,7 @@ class ValidationsController extends Controller
                 
             $video->validated = true;
             $video->save();
+            */
             return redirect()->route('admin.validations.index')->with('success', 'The video has been validated');
         }
 
