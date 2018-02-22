@@ -38,5 +38,32 @@
 @endsection
 
 @section('scripts')
+	<script>
+		new Vue({
+			el: '#converting',
 
+			created: () => {
+				socket.on('response_converting', (converting) => {
+					console.log(converting)
+				})
+
+				socket.on('test', () => {
+				    console.log('test')
+				})
+			},
+
+			mounted: () => {
+			    socket.emit('request_converting');
+            },
+
+			data: {
+			    converting: []
+			},
+
+			methods: {
+
+			}
+
+		});
+	</script>
 @endsection

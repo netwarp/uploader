@@ -30,7 +30,6 @@
         <script src="/js/admin.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gentelella/1.3.0/js/custom.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-        @yield('scripts')
         <script>
             /*
             var env = '{{ env('APP_ENV')  }}';
@@ -50,9 +49,7 @@
             */
 
             var socket = io('http://192.168.33.10:8080');
-            socket.on('hello', (message)=> {
-                console.log(message)
-            })
         </script>
+        @yield('scripts')
     </body>
 </html>
